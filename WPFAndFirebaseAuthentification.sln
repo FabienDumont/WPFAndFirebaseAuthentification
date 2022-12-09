@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFAndFirebaseAuthentification.WPF", "WPFAndFirebaseAuthentification.WPF\WPFAndFirebaseAuthentification.WPF.csproj", "{953C52AA-43B5-4EA9-ADE7-F69BCFC354B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFAndFirebaseAuthentification.API", "WPFAndFirebaseAuthentification.API\WPFAndFirebaseAuthentification.API.csproj", "{5150FA1A-304E-4C39-895E-D7CD73FD4206}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFAndFirebaseAuthentification.Core", "WPFAndFirebaseAuthentification.Core\WPFAndFirebaseAuthentification.Core.csproj", "{6354D1FE-6BDE-4FCA-907A-EDB99BFE3F9E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{953C52AA-43B5-4EA9-ADE7-F69BCFC354B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{953C52AA-43B5-4EA9-ADE7-F69BCFC354B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{953C52AA-43B5-4EA9-ADE7-F69BCFC354B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{953C52AA-43B5-4EA9-ADE7-F69BCFC354B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5150FA1A-304E-4C39-895E-D7CD73FD4206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5150FA1A-304E-4C39-895E-D7CD73FD4206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5150FA1A-304E-4C39-895E-D7CD73FD4206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5150FA1A-304E-4C39-895E-D7CD73FD4206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6354D1FE-6BDE-4FCA-907A-EDB99BFE3F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6354D1FE-6BDE-4FCA-907A-EDB99BFE3F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6354D1FE-6BDE-4FCA-907A-EDB99BFE3F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6354D1FE-6BDE-4FCA-907A-EDB99BFE3F9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
