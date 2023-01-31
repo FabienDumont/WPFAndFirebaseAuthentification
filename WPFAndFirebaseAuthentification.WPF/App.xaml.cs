@@ -69,6 +69,13 @@ public partial class App {
                         () => new PasswordResetVm(s.GetRequiredService<FirebaseAuthProvider>(), s.GetRequiredService<NavigationService<LoginVm>>())
                     )
                 );
+                
+                services.AddSingleton(
+                    s => new NavigationService<ProfileViewModel>(
+                        s.GetRequiredService<NavigationStore>(),
+                        () => new ProfileViewModel(s.GetRequiredService<AuthentificationStore>())
+                    )
+                );
 
                 services.AddSingleton<MainVm>();
 
@@ -93,7 +100,7 @@ public partial class App {
             await authentificationStore.Initialize();
 
             if (authentificationStore.IsLoggedIn) {
-                var navigationService = _host.Services.GetRequiredService<NavigationService<HomeVm>>();
+                var navigationService = _host.Services.GetRequiredService<NavigationService<ProfileViewModel>>();
                 navigationService.Navigate();
             } else {
                 var navigationService = _host.Services.GetRequiredService<NavigationService<LoginVm>>();
