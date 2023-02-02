@@ -8,19 +8,19 @@ using WPFAndFirebaseAuthentification.WPF.Queries;
 
 namespace WPFAndFirebaseAuthentification.WPF.Commands; 
 
-public class LoadMessageCommand : BaseAsyncCommand {
+public class LoadSecretMessageCommand : BaseAsyncCommand {
     private readonly HomeVm _homeVm;
-    private readonly IGetMessageQuery _getMessageQuery;
+    private readonly IGetSecretMessageQuery _getSecretMessageQuery;
     
-    public LoadMessageCommand(HomeVm homeVm, IGetMessageQuery getMessageQuery) {
+    public LoadSecretMessageCommand(HomeVm homeVm, IGetSecretMessageQuery getSecretMessageQuery) {
         _homeVm = homeVm;
-        _getMessageQuery = getMessageQuery;
+        _getSecretMessageQuery = getSecretMessageQuery;
     }
 
     protected override async Task ExecuteAsync(object? parameter) {
 
         try {
-            MessageResponse messageResponse = await _getMessageQuery.Execute();
+            MessageResponse messageResponse = await _getSecretMessageQuery.Execute();
 
             _homeVm.Message = messageResponse.Message;
         } catch (Exception e) {

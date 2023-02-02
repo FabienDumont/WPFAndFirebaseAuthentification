@@ -7,15 +7,15 @@ using WPFAndFirebaseAuthentification.WPF.Stores;
 namespace WPFAndFirebaseAuthentification.WPF.Commands;
 
 public class SendEmailVerificationEmailCommand : BaseAsyncCommand {
-    private AuthentificationStore _authentificationStore;
+    private AuthenticationStore _authenticationStore;
 
-    public SendEmailVerificationEmailCommand(AuthentificationStore authentificationStore) {
-        _authentificationStore = authentificationStore;
+    public SendEmailVerificationEmailCommand(AuthenticationStore authenticationStore) {
+        _authenticationStore = authenticationStore;
     }
 
     protected override async Task ExecuteAsync(object? parameter) {
         try {
-            await _authentificationStore.SendEmailVerificationEmail();
+            await _authenticationStore.SendEmailVerificationEmail();
             MessageBox.Show(
                 "Successfully sent email verification email. Check your email to verify.", "Success", MessageBoxButton.OK, MessageBoxImage.Information
             );

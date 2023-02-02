@@ -4,7 +4,7 @@ using WPFAndFirebaseAuthentification.Core.Responses;
 
 namespace WPFAndFirebaseAuthentification.WPF.Queries; 
 
-public interface IGetMessageQuery {
+public interface IGetSecretMessageQuery {
     [Get("/")]
     Task<MessageResponse> Execute();
 }

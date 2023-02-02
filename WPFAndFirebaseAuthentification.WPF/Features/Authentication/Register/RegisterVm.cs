@@ -14,7 +14,7 @@ public class RegisterVm : BaseVm {
         get => _email;
         set {
             _email = value;
-            OnPropertyChanged(nameof(Email));
+            OnPropertyChanged();
         }
     }
 
@@ -24,7 +24,7 @@ public class RegisterVm : BaseVm {
         get => _username;
         set {
             _username = value;
-            OnPropertyChanged(nameof(Username));
+            OnPropertyChanged();
         }
     }
 
@@ -34,7 +34,7 @@ public class RegisterVm : BaseVm {
         get => _password;
         set {
             _password = value;
-            OnPropertyChanged(nameof(Password));
+            OnPropertyChanged();
         }
     }
 
@@ -44,7 +44,17 @@ public class RegisterVm : BaseVm {
         get => _confirmedPassword;
         set {
             _confirmedPassword = value;
-            OnPropertyChanged(nameof(ConfirmedPassword));
+            OnPropertyChanged();
+        }
+    }
+
+    private bool _shouldSendVerificationEmail = true;
+
+    public bool ShouldSendVerificationEmail {
+        get => _shouldSendVerificationEmail ;
+        set {
+            _shouldSendVerificationEmail  = value;
+            OnPropertyChanged();
         }
     }
     

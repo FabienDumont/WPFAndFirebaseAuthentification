@@ -11,18 +11,18 @@ namespace WPFAndFirebaseAuthentification.WPF.Commands;
 
 public class LoginCommand : BaseAsyncCommand {
     private readonly LoginVm _loginVm;
-    private readonly AuthentificationStore _authentificationStore;
+    private readonly AuthenticationStore _authenticationStore;
     private readonly INavigationService _homeNavigationService;
 
-    public LoginCommand(LoginVm loginVm, AuthentificationStore authentificationStore, INavigationService homeNavigationService) {
+    public LoginCommand(LoginVm loginVm, AuthenticationStore authenticationStore, INavigationService homeNavigationService) {
         _loginVm = loginVm;
-        _authentificationStore = authentificationStore;
+        _authenticationStore = authenticationStore;
         _homeNavigationService = homeNavigationService;
     }
 
     protected override async Task ExecuteAsync(object? parameter) {
         try {
-            await _authentificationStore.Login(_loginVm.Email, _loginVm.Password);
+            await _authenticationStore.Login(_loginVm.Email, _loginVm.Password);
             MessageBox.Show("Successfully logged in!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             _homeNavigationService.Navigate();
         } catch (Exception) {

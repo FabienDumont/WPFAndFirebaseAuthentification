@@ -9,9 +9,9 @@ using WPFAndFirebaseAuthentification.WPF.Stores;
 namespace WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;
 
 public class HomeVm : BaseVm {
-    private readonly AuthentificationStore _authentificationStore;
+    private readonly AuthenticationStore _authenticationStore;
 
-    public string Username => _authentificationStore.CurrentUser?.DisplayName ?? "Unknown";
+    public string Username => _authenticationStore.CurrentUser?.DisplayName ?? "Unknown";
 
     private string _message;
 
@@ -23,30 +23,30 @@ public class HomeVm : BaseVm {
         }
     }
 
-    public ICommand LoadMessageCommand { get; }
+    public ICommand LoadSecretMessageCommand { get; }
     public ICommand NavigateProfileCommand { get; }
     public ICommand LogoutCommand { get; }
 
     public HomeVm(
-        AuthentificationStore authentificationStore, IGetMessageQuery getMessageQuery, INavigationService loginNavigationService,
+        AuthenticationStore authenticationStore, IGetSecretMessageQuery getSecretMessageQuery, INavigationService loginNavigationService,
         INavigationService profileNavigationService
     ) {
-        _authentificationStore = authentificationStore;
+        _authenticationStore = authenticationStore;
 
         _message = "";
 
-        LoadMessageCommand = new LoadMessageCommand(this, getMessageQuery);
+        LoadSecretMessageCommand = new LoadSecretMessageCommand(this, getSecretMessageQuery);
         NavigateProfileCommand = new NavigateCommand(profileNavigationService);
-        LogoutCommand = new LogoutCommand(authentificationStore, loginNavigationService);
+        LogoutCommand = new LogoutCommand(authenticationStore, loginNavigationService);
     }
 
     public static HomeVm LoadVm(
-        AuthentificationStore authentificationStore, IGetMessageQuery getMessageQuery, INavigationService loginNavigationService,
+        AuthenticationStore authenticationStore, IGetSecretMessageQuery getSecretMessageQuery, INavigationService loginNavigationService,
         INavigationService profileNavigationService
     ) {
-        HomeVm homeVm = new HomeVm(authentificationStore, getMessageQuery, loginNavigationService, profileNavigationService);
+        HomeVm homeVm = new HomeVm(authenticationStore, getSecretMessageQuery, loginNavigationService, profileNavigationService);
 
-        homeVm.LoadMessageCommand.Execute(null);
+        homeVm.LoadSecretMessageCommand.Execute(null);
 
         return homeVm;
     }

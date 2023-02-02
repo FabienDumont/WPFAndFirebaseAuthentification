@@ -34,13 +34,13 @@ public class LoginVm : BaseVm {
     public ICommand NavigatePasswordResetCommand { get; }
 
     public LoginVm(
-        AuthentificationStore authentificationStore, INavigationService registerNavigationService, INavigationService homeNavigationService,
+        AuthenticationStore authenticationStore, INavigationService registerNavigationService, INavigationService homeNavigationService,
         INavigationService passwordResetNavigationService
     ) {
         _email = "fabdum19@live.fr";
         _password = "password";
 
-        SubmitCommand = new LoginCommand(this, authentificationStore, homeNavigationService);
+        SubmitCommand = new LoginCommand(this, authenticationStore, homeNavigationService);
         NavigateRegisterCommand = new NavigateCommand(registerNavigationService);
         NavigatePasswordResetCommand = new NavigateCommand(passwordResetNavigationService);
     }

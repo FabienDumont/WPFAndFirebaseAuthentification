@@ -5,11 +5,11 @@ using Firebase.Auth;
 
 namespace WPFAndFirebaseAuthentification.WPF.Stores; 
 
-public class AuthentificationStore {
+public class AuthenticationStore {
     private FirebaseAuthProvider _firebaseAuthProvider;
     private FirebaseAuthLink? _currentFirebaseAuthLink;
 
-    public AuthentificationStore(FirebaseAuthProvider firebaseAuthProvider) {
+    public AuthenticationStore(FirebaseAuthProvider firebaseAuthProvider) {
         _firebaseAuthProvider = firebaseAuthProvider;
     }
     public User? CurrentUser => _currentFirebaseAuthLink?.User;

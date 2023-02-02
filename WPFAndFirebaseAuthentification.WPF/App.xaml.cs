@@ -28,13 +28,13 @@ public partial class App {
 
                 serviceCollection.AddTransient<FirebaseAuthHttpMessageHandler>();
 
-                serviceCollection.AddRefitClient<IGetMessageQuery>()
+                serviceCollection.AddRefitClient<IGetSecretMessageQuery>()
                     .ConfigureHttpClient(c => c.BaseAddress = new Uri(context.Configuration.GetValue<string>("API_BASE_URL")))
                     .AddHttpMessageHandler<FirebaseAuthHttpMessageHandler>();
 
                 serviceCollection.AddSingleton<NavigationStore>();
                 serviceCollection.AddSingleton<ModalNavigationStore>();
-                serviceCollection.AddSingleton<AuthentificationStore>();
+                serviceCollection.AddSingleton<AuthenticationStore>();
 
                 serviceCollection.AddSingleton(
                     s => new NavigationService<RegisterVm>(
@@ -47,7 +47,7 @@ public partial class App {
                     s => new NavigationService<LoginVm>(
                         s.GetRequiredService<NavigationStore>(),
                         () => new LoginVm(
-                            s.GetRequiredService<AuthentificationStore>(), s.GetRequiredService<NavigationService<RegisterVm>>(),
+                            s.GetRequiredService<AuthenticationStore>(), s.GetRequiredService<NavigationService<RegisterVm>>(),
                             s.GetRequiredService<NavigationService<HomeVm>>(), s.GetRequiredService<NavigationService<PasswordResetVm>>()
                         )
                     )
@@ -57,7 +57,7 @@ public partial class App {
                     s => new NavigationService<HomeVm>(
                         s.GetRequiredService<NavigationStore>(),
                         () => HomeVm.LoadVm(
-                            s.GetRequiredService<AuthentificationStore>(), s.GetRequiredService<IGetMessageQuery>(),
+                            s.GetRequiredService<AuthenticationStore>(), s.GetRequiredService<IGetSecretMessageQuery>(),
                             s.GetRequiredService<NavigationService<LoginVm>>(), s.GetRequiredService<NavigationService<ProfileVm>>()
                         )
                     )
@@ -73,7 +73,7 @@ public partial class App {
                 serviceCollection.AddSingleton(
                     s => new NavigationService<ProfileVm>(
                         s.GetRequiredService<NavigationStore>(),
-                        () => new ProfileVm(s.GetRequiredService<AuthentificationStore>(), s.GetRequiredService<NavigationService<HomeVm>>())
+                        () => new ProfileVm(s.GetRequiredService<AuthenticationStore>(), s.GetRequiredService<NavigationService<HomeVm>>())
                     )
                 );
 
@@ -94,12 +94,12 @@ public partial class App {
     }
 
     private async Task Initialize() {
-        AuthentificationStore authentificationStore = _host.Services.GetRequiredService<AuthentificationStore>();
+        AuthenticationStore authenticationStore = _host.Services.GetRequiredService<AuthenticationStore>();
 
         try {
-            await authentificationStore.Initialize();
+            await authenticationStore.Initialize();
 
-            if (authentificationStore.IsLoggedIn) {
+            if (authenticationStore.IsLoggedIn) {
                 var navigationService = _host.Services.GetRequiredService<NavigationService<HomeVm>>();
                 navigationService.Navigate();
             } else {

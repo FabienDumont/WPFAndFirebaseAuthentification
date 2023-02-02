@@ -24,6 +24,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0">
@@ -46,13 +47,18 @@
                 <components:BindablePasswordBox
                     Password="{Binding ConfirmedPassword, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
+            
+            <CheckBox Grid.Row="4" 
+                      Margin="0 10 0 0"
+                      Content="Send verification email?"
+                      IsChecked="{Binding ShouldSendVerificationEmail}"/>
 
-            <Button Grid.Row="4"
+            <Button Grid.Row="5"
                     Margin="0,20,0,0"
                     Content="Submit"
                     Command="{Binding SubmitCommand}" />
 
-            <Button Grid.Row="5"
+            <Button Grid.Row="6"
                     Margin="0,10,0,0"
                     Content="Already have an account? Login"
                     Command="{Binding NavigateLoginCommand}"

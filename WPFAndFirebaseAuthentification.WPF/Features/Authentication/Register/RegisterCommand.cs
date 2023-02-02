@@ -6,7 +6,7 @@ using MVVMEssentials.Commands;
 using MVVMEssentials.Services;
 using WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;
 
-namespace WPFAndFirebaseAuthentification.WPF.Commands; 
+namespace WPFAndFirebaseAuthentification.WPF.Commands;
 
 public class RegisterCommand : BaseAsyncCommand {
     private readonly RegisterVm _registerVm;
@@ -22,11 +22,13 @@ public class RegisterCommand : BaseAsyncCommand {
     protected override async Task ExecuteAsync(object? parameter) {
         string? password = _registerVm.Password;
         string? confirmedPassword = _registerVm.ConfirmedPassword;
-        if(!password.Equals(confirmedPassword)) {
+        if (!password.Equals(confirmedPassword)) {
             MessageBox.Show("Password and confirmed password must match.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         } else {
             try {
-                await _firebaseAuthProvider.CreateUserWithEmailAndPasswordAsync(_registerVm.Email, password, _registerVm.Username, true);
+                await _firebaseAuthProvider.CreateUserWithEmailAndPasswordAsync(
+                    _registerVm.Email, password, _registerVm.Username, _registerVm.ShouldSendVerificationEmail
+                );
                 MessageBox.Show("Successfully registered!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 _loginNavigationService.Navigate();
             } catch (Exception) {
