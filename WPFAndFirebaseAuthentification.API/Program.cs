@@ -20,7 +20,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGet("/", [Authorize] () => {
+app.MapGet("/", [Authorize] (ClaimsPrincipal principal) => {
     return Results.Json(new MessageResponse() {
         Message = "Firebase is cool"
     });

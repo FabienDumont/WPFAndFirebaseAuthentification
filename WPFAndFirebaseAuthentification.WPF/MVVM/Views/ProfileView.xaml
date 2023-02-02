@@ -21,6 +21,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -57,6 +58,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Label" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0"
@@ -66,17 +68,36 @@
                            Margin="20 0 0 0">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
-                            <Setter Property="Text" Value="No"/>
+                            <Setter Property="Text" Value="No" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsEmailVerified}" Value="True">
-                                    <Setter Property="Text" Value="Yes"/>
+                                    <Setter Property="Text" Value="Yes" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
 
+                <Button Grid.Column="2"
+                        Content="(verify email)"
+                        Margin="5 0 0 0"
+                        Command="{Binding SendEmailVerificationEmailCommand}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource ButtonLink}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsEmailVerified}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
+
+            <Button Grid.Row="3"
+                    Margin="0 20 0 0"
+                    Content="Done"
+                    Command="{Binding NavigateHomeCommand}" />
         </Grid>
     </Grid>
 </UserControl>

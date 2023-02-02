@@ -26,7 +26,7 @@ public class RegisterCommand : BaseAsyncCommand {
             MessageBox.Show("Password and confirmed password must match.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         } else {
             try {
-                await _firebaseAuthProvider.CreateUserWithEmailAndPasswordAsync(_registerVm.Email, password, _registerVm.Username);
+                await _firebaseAuthProvider.CreateUserWithEmailAndPasswordAsync(_registerVm.Email, password, _registerVm.Username, true);
                 MessageBox.Show("Successfully registered!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 _loginNavigationService.Navigate();
             } catch (Exception) {

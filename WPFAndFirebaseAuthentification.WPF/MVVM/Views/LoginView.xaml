@@ -36,12 +36,8 @@
                 <Button Content="Forgot password ?"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
+                        Style="{StaticResource ButtonLink}"
                         Command="{Binding NavigatePasswordResetCommand}">
-                    <Button.Style>
-                        <Style TargetType="Button" BasedOn="{StaticResource ButtonTransparent}">
-                            <Setter Property="Padding" Value="0" />
-                        </Style>
-                    </Button.Style>
                 </Button>
             </StackPanel>
 

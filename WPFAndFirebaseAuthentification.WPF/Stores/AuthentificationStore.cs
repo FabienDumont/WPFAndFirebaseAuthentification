@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Firebase.Auth;
 
@@ -27,16 +28,13 @@ public class AuthentificationStore {
             return;
         }
 
-        FirebaseAuthLink firebaseAuthLink = new FirebaseAuthLink(_firebaseAuthProvider, firebaseAuth);
+        _currentFirebaseAuthLink = new FirebaseAuthLink(_firebaseAuthProvider, firebaseAuth);
 
-        await firebaseAuthLink.GetFreshAuthAsync();
-
-        _currentFirebaseAuthLink = firebaseAuthLink;
+        await GetFreshAuthAsync();
     }
 
     public async Task Login(string email, string password) {
         _currentFirebaseAuthLink = await _firebaseAuthProvider.SignInWithEmailAndPasswordAsync(email, password);
-        
         SaveAuthentificationState();
     }
 
@@ -54,6 +52,17 @@ public class AuthentificationStore {
         }
 
         return null;
+    }
+
+    public async Task SendEmailVerificationEmail() {
+
+        if (_currentFirebaseAuthLink == null) {
+            throw new Exception("User is not authenticated.");
+        }
+
+        await GetFreshAuthAsync();
+
+        await _firebaseAuthProvider.SendEmailVerificationAsync(_currentFirebaseAuthLink.FirebaseToken);
     }
     
     private void SaveAuthentificationState() {

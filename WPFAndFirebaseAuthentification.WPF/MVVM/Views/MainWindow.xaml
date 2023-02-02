@@ -22,7 +22,7 @@
                 <DataTemplate DataType="{x:Type vms:PasswordResetVm}">
                     <local:PasswordResetView/>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type vms:ProfileViewModel}">
+                <DataTemplate DataType="{x:Type vms:ProfileVm}">
                     <local:ProfileView/>
                 </DataTemplate>
             </ContentControl.Resources>
