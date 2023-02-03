@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
-using Firebase.Auth;
 using MVVMEssentials.Commands;
 using MVVMEssentials.Services;
-using WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;
+using WPFAndFirebaseAuthentification.WPF.Features.Authentication.Login;
 using WPFAndFirebaseAuthentification.WPF.Stores;
 
 namespace WPFAndFirebaseAuthentification.WPF.Commands;
 
 public class LoginCommand : BaseAsyncCommand {
-    private readonly LoginVm _loginVm;
+    private readonly LoginFormVm _loginFormVm;
     private readonly AuthenticationStore _authenticationStore;
     private readonly INavigationService _homeNavigationService;
 
-    public LoginCommand(LoginVm loginVm, AuthenticationStore authenticationStore, INavigationService homeNavigationService) {
-        _loginVm = loginVm;
+    public LoginCommand(LoginFormVm loginFormVm, AuthenticationStore authenticationStore, INavigationService homeNavigationService) {
+        _loginFormVm = loginFormVm;
         _authenticationStore = authenticationStore;
         _homeNavigationService = homeNavigationService;
     }
 
     protected override async Task ExecuteAsync(object? parameter) {
         try {
-            await _authenticationStore.Login(_loginVm.Email, _loginVm.Password);
+            await _authenticationStore.Login(_loginFormVm.Email, _loginFormVm.Password);
             MessageBox.Show("Successfully logged in!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             _homeNavigationService.Navigate();
         } catch (Exception) {

@@ -4,25 +4,26 @@ using System.Windows;
 using Firebase.Auth;
 using MVVMEssentials.Commands;
 using MVVMEssentials.Services;
+using WPFAndFirebaseAuthentification.WPF.Features.Authentication.ResetPassword;
 using WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;
 
 namespace WPFAndFirebaseAuthentification.WPF.Commands;
 
 public class SendPasswordResetEmailCommand : BaseAsyncCommand {
-    private readonly PasswordResetVm _passwordResetVm;
+    private readonly PasswordResetFormVm _passwordResetFormVm;
     private readonly FirebaseAuthProvider _firebaseAuthProvider;
     private readonly INavigationService _loginNavigationService;
 
     public SendPasswordResetEmailCommand(
-        PasswordResetVm passwordResetVm, FirebaseAuthProvider firebaseAuthProvider, INavigationService loginNavigationService
+        PasswordResetFormVm passwordResetFormVm, FirebaseAuthProvider firebaseAuthProvider, INavigationService loginNavigationService
     ) {
-        _passwordResetVm = passwordResetVm;
+        _passwordResetFormVm = passwordResetFormVm;
         _firebaseAuthProvider = firebaseAuthProvider;
         _loginNavigationService = loginNavigationService;
     }
 
     protected override async Task ExecuteAsync(object? parameter) {
-        string email = _passwordResetVm.Email;
+        string email = _passwordResetFormVm.Email;
         try {
             await _firebaseAuthProvider.SendPasswordResetEmailAsync(email);
             MessageBox.Show(

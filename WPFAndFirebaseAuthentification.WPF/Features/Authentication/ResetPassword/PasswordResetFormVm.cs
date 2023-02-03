@@ -5,9 +5,9 @@ using MVVMEssentials.Services;
 using MVVMEssentials.ViewModels;
 using WPFAndFirebaseAuthentification.WPF.Commands;
 
-namespace WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels; 
+namespace WPFAndFirebaseAuthentification.WPF.Features.Authentication.ResetPassword; 
 
-public class PasswordResetVm : BaseVm {
+public class PasswordResetFormVm : BaseVm {
     private string _email;
 
     public string Email {
@@ -21,7 +21,7 @@ public class PasswordResetVm : BaseVm {
     public ICommand SendPasswordResetEmailCommand { get; }
     public ICommand NavigateLoginCommand { get; }
 
-    public PasswordResetVm(FirebaseAuthProvider firebaseAuthProvider, INavigationService loginNavigationService) {
+    public PasswordResetFormVm(FirebaseAuthProvider firebaseAuthProvider, INavigationService loginNavigationService) {
 
         _email = "";
         

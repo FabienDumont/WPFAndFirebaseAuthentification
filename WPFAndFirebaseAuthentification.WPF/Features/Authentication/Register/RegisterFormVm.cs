@@ -5,9 +5,9 @@ using MVVMEssentials.Services;
 using MVVMEssentials.ViewModels;
 using WPFAndFirebaseAuthentification.WPF.Commands;
 
-namespace WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;
+namespace WPFAndFirebaseAuthentification.WPF.Features.Authentication.Register; 
 
-public class RegisterVm : BaseVm {
+public class RegisterFormVm : BaseVm {
     private string _email;
 
     public string Email {
@@ -61,7 +61,7 @@ public class RegisterVm : BaseVm {
     public ICommand SubmitCommand { get; }
     public ICommand NavigateLoginCommand { get; }
 
-    public RegisterVm(FirebaseAuthProvider firebaseAuthProvider, INavigationService loginNavigationService) {
+    public RegisterFormVm(FirebaseAuthProvider firebaseAuthProvider, INavigationService loginNavigationService) {
 
         _email = "fabdum19@live.fr";
         _username = "Fabibi";

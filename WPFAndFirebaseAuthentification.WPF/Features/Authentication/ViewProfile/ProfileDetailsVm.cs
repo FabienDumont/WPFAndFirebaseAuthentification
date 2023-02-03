@@ -1,14 +1,13 @@
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using MVVMEssentials.Commands;
 using MVVMEssentials.Services;
 using MVVMEssentials.ViewModels;
 using WPFAndFirebaseAuthentification.WPF.Commands;
 using WPFAndFirebaseAuthentification.WPF.Stores;
 
-namespace WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels; 
+namespace WPFAndFirebaseAuthentification.WPF.Features.Authentication.ViewProfile; 
 
-public class ProfileVm : BaseVm {
-
+public class ProfileDetailsVm : BaseVm {
     private readonly AuthenticationStore _authenticationStore;
 
     public string Username => _authenticationStore.CurrentUser?.DisplayName ?? string.Empty;
@@ -18,11 +17,10 @@ public class ProfileVm : BaseVm {
     public ICommand SendEmailVerificationEmailCommand { get; }
     public ICommand NavigateHomeCommand { get; }
 
-    public ProfileVm(AuthenticationStore authenticationStore, INavigationService homeNavigationService) {
+    public ProfileDetailsVm(AuthenticationStore authenticationStore, INavigationService homeNavigationService) {
         _authenticationStore = authenticationStore;
 
         SendEmailVerificationEmailCommand = new SendEmailVerificationEmailCommand(_authenticationStore);
         NavigateHomeCommand = new NavigateCommand(homeNavigationService);
     }
-
 }

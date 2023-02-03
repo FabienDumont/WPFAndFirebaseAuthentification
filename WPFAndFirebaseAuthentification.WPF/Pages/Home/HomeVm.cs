@@ -3,23 +3,24 @@ using MVVMEssentials.Commands;
 using MVVMEssentials.Services;
 using MVVMEssentials.ViewModels;
 using WPFAndFirebaseAuthentification.WPF.Commands;
+using WPFAndFirebaseAuthentification.WPF.Features.SecretMessage.ViewSecretMessage;
 using WPFAndFirebaseAuthentification.WPF.Queries;
 using WPFAndFirebaseAuthentification.WPF.Stores;
 
 namespace WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;
 
-public class HomeVm : BaseVm {
+public class HomeVm : BaseVm, IViewSecretMessageViewModel {
     private readonly AuthenticationStore _authenticationStore;
 
     public string Username => _authenticationStore.CurrentUser?.DisplayName ?? "Unknown";
 
     private string _message;
 
-    public string Message {
+    public string SecretMessage {
         get => _message;
         set {
             _message = value;
-            OnPropertyChanged(nameof(Message));
+            OnPropertyChanged();
         }
     }
 

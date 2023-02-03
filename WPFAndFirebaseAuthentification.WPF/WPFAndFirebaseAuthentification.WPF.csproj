@@ -53,27 +53,27 @@
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="Features\Authentication\Login\LoginView.xaml">
+      <Page Update="Pages\Home\HomeView.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="Features\Authentication\Register\RegisterView.xaml">
+      <Page Update="Pages\Login\LoginView.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="Features\Authentication\ViewProfile\ProfileView.xaml">
+      <Page Update="Pages\Register\RegisterView.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="Features\Authentication\ResetPassword\PasswordResetView.xaml">
+      <Page Update="Pages\ResetPassword\PasswordResetView.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="Features\SecretMessage\ViewSecretMessage\HomeView.xaml">
+      <Page Update="Pages\Profile\ProfileView.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>

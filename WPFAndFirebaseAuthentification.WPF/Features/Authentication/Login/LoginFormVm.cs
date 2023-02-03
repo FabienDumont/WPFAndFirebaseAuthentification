@@ -1,21 +1,20 @@
 ﻿using System.Windows.Input;
-using Firebase.Auth;
 using MVVMEssentials.Commands;
 using MVVMEssentials.Services;
 using MVVMEssentials.ViewModels;
 using WPFAndFirebaseAuthentification.WPF.Commands;
 using WPFAndFirebaseAuthentification.WPF.Stores;
 
-namespace WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;
+namespace WPFAndFirebaseAuthentification.WPF.Features.Authentication.Login; 
 
-public class LoginVm : BaseVm {
+public class LoginFormVm : BaseVm {
     private string _email;
 
     public string Email {
         get => _email;
         set {
             _email = value;
-            OnPropertyChanged(nameof(Email));
+            OnPropertyChanged();
         }
     }
 
@@ -25,7 +24,7 @@ public class LoginVm : BaseVm {
         get => _password;
         set {
             _password = value;
-            OnPropertyChanged(nameof(Password));
+            OnPropertyChanged();
         }
     }
 
@@ -33,7 +32,7 @@ public class LoginVm : BaseVm {
     public ICommand NavigateRegisterCommand { get; }
     public ICommand NavigatePasswordResetCommand { get; }
 
-    public LoginVm(
+    public LoginFormVm(
         AuthenticationStore authenticationStore, INavigationService registerNavigationService, INavigationService homeNavigationService,
         INavigationService passwordResetNavigationService
     ) {
