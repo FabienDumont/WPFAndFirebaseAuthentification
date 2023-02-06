@@ -41,6 +41,6 @@
                    VerticalAlignment="Center"
                    FontSize="48"
                    TextAlignment="Center"
-                   Text="{Binding Message}" />
+                   Text="{Binding SecretMessage}" />
     </Grid>
 </UserControl>

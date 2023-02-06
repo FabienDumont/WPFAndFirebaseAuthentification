@@ -3,6 +3,7 @@ using MVVMEssentials.Commands;
 using MVVMEssentials.Services;
 using MVVMEssentials.ViewModels;
 using WPFAndFirebaseAuthentification.WPF.Commands;
+using WPFAndFirebaseAuthentification.WPF.Entities.Users;
 using WPFAndFirebaseAuthentification.WPF.Features.SecretMessage.ViewSecretMessage;
 using WPFAndFirebaseAuthentification.WPF.Queries;
 using WPFAndFirebaseAuthentification.WPF.Stores;
@@ -10,9 +11,9 @@ using WPFAndFirebaseAuthentification.WPF.Stores;
 namespace WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;
 
 public class HomeVm : BaseVm, IViewSecretMessageViewModel {
-    private readonly AuthenticationStore _authenticationStore;
+    private readonly CurrentUserStore _currentUserStore;
 
-    public string Username => _authenticationStore.CurrentUser?.DisplayName ?? "Unknown";
+    public string Username => _currentUserStore.User?.DisplayName ?? "Unknown";
 
     private string _message;
 
@@ -29,23 +30,23 @@ public class HomeVm : BaseVm, IViewSecretMessageViewModel {
     public ICommand LogoutCommand { get; }
 
     public HomeVm(
-        AuthenticationStore authenticationStore, IGetSecretMessageQuery getSecretMessageQuery, INavigationService loginNavigationService,
-        INavigationService profileNavigationService
+        AuthenticationStore authenticationStore, CurrentUserStore currentUserStore, IGetSecretMessageQuery getSecretMessageQuery,
+        INavigationService loginNavigationService, INavigationService profileNavigationService
     ) {
-        _authenticationStore = authenticationStore;
+        _currentUserStore = currentUserStore;
 
         _message = "";
 
-        LoadSecretMessageCommand = new LoadSecretMessageCommand(this, getSecretMessageQuery);
+        LoadSecretMessageCommand = new LoadSecretMessageCommand(this, getSecretMessageQuery, currentUserStore);
         NavigateProfileCommand = new NavigateCommand(profileNavigationService);
         LogoutCommand = new LogoutCommand(authenticationStore, loginNavigationService);
     }
 
     public static HomeVm LoadVm(
-        AuthenticationStore authenticationStore, IGetSecretMessageQuery getSecretMessageQuery, INavigationService loginNavigationService,
-        INavigationService profileNavigationService
+        AuthenticationStore authenticationStore, CurrentUserStore currentUserStore, IGetSecretMessageQuery getSecretMessageQuery,
+        INavigationService loginNavigationService, INavigationService profileNavigationService
     ) {
-        HomeVm homeVm = new HomeVm(authenticationStore, getSecretMessageQuery, loginNavigationService, profileNavigationService);
+        HomeVm homeVm = new HomeVm(authenticationStore, currentUserStore, getSecretMessageQuery, loginNavigationService, profileNavigationService);
 
         homeVm.LoadSecretMessageCommand.Execute(null);
 

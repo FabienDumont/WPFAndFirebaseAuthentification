@@ -12,6 +12,6 @@ public class LoginVm : BaseVm {
         AuthenticationStore authenticationStore, INavigationService registerNavigationService, INavigationService homeNavigationService,
         INavigationService passwordResetNavigationService
     ) {
-        LoginFormVm = new LoginFormVm(authenticationStore, registerNavigationService, registerNavigationService, passwordResetNavigationService);
+        LoginFormVm = new LoginFormVm(authenticationStore, registerNavigationService, homeNavigationService, passwordResetNavigationService);
     }
 }

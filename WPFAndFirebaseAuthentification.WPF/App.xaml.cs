@@ -9,6 +9,7 @@ using MVVMEssentials.Services;
 using MVVMEssentials.Stores;
 using MVVMEssentials.ViewModels;
 using Refit;
+using WPFAndFirebaseAuthentification.WPF.Entities.Users;
 using WPFAndFirebaseAuthentification.WPF.Http;
 using WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;
 using WPFAndFirebaseAuthentification.WPF.MVVM.Views;
@@ -35,6 +36,7 @@ public partial class App {
                 serviceCollection.AddSingleton<NavigationStore>();
                 serviceCollection.AddSingleton<ModalNavigationStore>();
                 serviceCollection.AddSingleton<AuthenticationStore>();
+                serviceCollection.AddSingleton<CurrentUserStore>();
 
                 serviceCollection.AddSingleton(
                     s => new NavigationService<RegisterVm>(
@@ -57,8 +59,9 @@ public partial class App {
                     s => new NavigationService<HomeVm>(
                         s.GetRequiredService<NavigationStore>(),
                         () => HomeVm.LoadVm(
-                            s.GetRequiredService<AuthenticationStore>(), s.GetRequiredService<IGetSecretMessageQuery>(),
-                            s.GetRequiredService<NavigationService<LoginVm>>(), s.GetRequiredService<NavigationService<ProfileVm>>()
+                            s.GetRequiredService<AuthenticationStore>(), s.GetRequiredService<CurrentUserStore>(),
+                            s.GetRequiredService<IGetSecretMessageQuery>(), s.GetRequiredService<NavigationService<LoginVm>>(),
+                            s.GetRequiredService<NavigationService<ProfileVm>>()
                         )
                     )
                 );
@@ -69,11 +72,14 @@ public partial class App {
                         () => new PasswordResetVm(s.GetRequiredService<FirebaseAuthProvider>(), s.GetRequiredService<NavigationService<LoginVm>>())
                     )
                 );
-                
+
                 serviceCollection.AddSingleton(
                     s => new NavigationService<ProfileVm>(
                         s.GetRequiredService<NavigationStore>(),
-                        () => new ProfileVm(s.GetRequiredService<AuthenticationStore>(), s.GetRequiredService<NavigationService<HomeVm>>())
+                        () => new ProfileVm(
+                            s.GetRequiredService<AuthenticationStore>(), s.GetRequiredService<CurrentUserStore>(),
+                            s.GetRequiredService<NavigationService<HomeVm>>()
+                        )
                     )
                 );
 
@@ -95,11 +101,12 @@ public partial class App {
 
     private async Task Initialize() {
         AuthenticationStore authenticationStore = _host.Services.GetRequiredService<AuthenticationStore>();
+        CurrentUserStore currentUserStore = _host.Services.GetRequiredService<CurrentUserStore>();
 
         try {
             await authenticationStore.Initialize();
 
-            if (authenticationStore.IsLoggedIn) {
+            if (currentUserStore.User.IsLoggedIn) {
                 var navigationService = _host.Services.GetRequiredService<NavigationService<HomeVm>>();
                 navigationService.Navigate();
             } else {
