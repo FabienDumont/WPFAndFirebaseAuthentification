@@ -1,8 +1,5 @@
-using System.Windows.Input;
-using MVVMEssentials.Commands;
 using MVVMEssentials.Services;
 using MVVMEssentials.ViewModels;
-using WPFAndFirebaseAuthentification.WPF.Commands;
 using WPFAndFirebaseAuthentification.WPF.Entities.Users;
 using WPFAndFirebaseAuthentification.WPF.Features.Authentication.ViewProfile;
 using WPFAndFirebaseAuthentification.WPF.Stores;

@@ -5,7 +5,6 @@ using Firebase.Auth;
 using MVVMEssentials.Commands;
 using MVVMEssentials.Services;
 using WPFAndFirebaseAuthentification.WPF.Features.Authentication.ResetPassword;
-using WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;
 
 namespace WPFAndFirebaseAuthentification.WPF.Commands;
 

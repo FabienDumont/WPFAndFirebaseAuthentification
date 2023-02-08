@@ -3,7 +3,6 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Firebase.Auth;
 using WPFAndFirebaseAuthentification.WPF.Entities.Users;
-using User = Firebase.Auth.User;
 
 namespace WPFAndFirebaseAuthentification.WPF.Stores;
 

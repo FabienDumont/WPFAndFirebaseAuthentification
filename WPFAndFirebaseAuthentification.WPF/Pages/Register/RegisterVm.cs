@@ -1,9 +1,6 @@
-﻿using System.Windows.Input;
-using Firebase.Auth;
-using MVVMEssentials.Commands;
+﻿using Firebase.Auth;
 using MVVMEssentials.Services;
 using MVVMEssentials.ViewModels;
-using WPFAndFirebaseAuthentification.WPF.Commands;
 using WPFAndFirebaseAuthentification.WPF.Features.Authentication.Register;
 
 namespace WPFAndFirebaseAuthentification.WPF.MVVM.ViewModels;

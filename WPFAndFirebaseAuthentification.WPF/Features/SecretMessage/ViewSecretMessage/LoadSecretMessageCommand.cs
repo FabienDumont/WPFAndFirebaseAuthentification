@@ -6,7 +6,6 @@ using WPFAndFirebaseAuthentification.Core.Responses;
 using WPFAndFirebaseAuthentification.WPF.Entities.Users;
 using WPFAndFirebaseAuthentification.WPF.Features.SecretMessage.ViewSecretMessage;
 using WPFAndFirebaseAuthentification.WPF.Queries;
-using WPFAndFirebaseAuthentification.WPF.Stores;
 
 namespace WPFAndFirebaseAuthentification.WPF.Commands;
 
